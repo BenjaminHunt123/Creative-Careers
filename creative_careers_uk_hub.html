@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Careers UK - Skills, Duties & Salary Guide</title>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base starter styles based on user's style.css */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a202c;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-size: 2.2rem;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        /* Search and Filter Section */
+        .filter-container {
+            background: white;
+            padding: 18px 22px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .search-box-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px 12px 42px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag-btn {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tag-btn:hover, .tag-btn.active {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+
+        /* Jobs Grid Layout */
+        .jobs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .jobs .job-card {
+            background: white;
+            border-radius: 12px;
+            padding: 22px 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
+            border: 1px solid #edf2f7;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .jobs .job-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 18px rgba(0,0,0,0.1);
+            border-color: #cbd5e1;
+        }
+
+        .job-card .icon-wrapper {
+            width: 58px;
+            height: 58px;
+            background: #e6f0fa;
+            color: #0066cc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 14px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .job-card:hover .icon-wrapper {
+            background: #0066cc;
+            color: white;
+        }
+
+        .job-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.15rem;
+            color: #1e293b;
+        }
+
+        .job-card .pay-badge {
+            font-size: 0.82rem;
+            color: #0066cc;
+            background: #eff6ff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive starter button style matching user spec */
+        .jobs a.btn-details {
+            display: block;
+            width: 100%;
+            padding: 10px 14px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .jobs a.btn-details:hover {
+            background: #004c99;
+        }
+
+        /* Single Detail View Styling */
+        section {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: #e2e8f0;
+            color: #334155;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .back:hover {
+            background: #cbd5e1;
+            color: #0f172a;
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f5f9;
+            margin-bottom: 24px;
+        }
+
+        .detail-header-icon {
+            width: 64px;
+            height: 64px;
+            background: #0066cc;
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .detail-header-text h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #0f172a;
+        }
+
+        .detail-header-text .category-tag {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* Salary Grid Breakdown */
+        .salary-section-title {
+            font-size: 1.2rem;
+            color: #1e293b;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .salary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 28px;
+        }
+
+        .salary-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #0066cc;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .salary-card .level {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .salary-card .amount {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0066cc;
+            margin: 6px 0;
+        }
+
+        .salary-card .note {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        /* Skill Pills & Lists */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .skill-pill {
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-box {
+            background: #fafafa;
+            border: 1px solid #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .info-box h3 {
+            margin-top: 0;
+            font-size: 1.15rem;
+            color: #1e293b;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .info-box ul li {
+            margin-bottom: 10px;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        .info-box ul li strong {
+            color: #0f172a;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 10px;
+            color: #64748b;
+            grid-column: 1 / -1;
+        }
+
+        .no-results i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #cbd5e1;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            color: #64748b;
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* Navigation state classes */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Creative Careers UK</h1>
+        <p class="subtitle">Explore skills, qualifications, daily duties, and UK salary benchmarks for creative roles.</p>
+    </header>
+
+    <!-- MAIN GRID VIEW CONTAINER -->
+    <main id="grid-view">
+        
+        <div class="filter-container">
+            <div class="search-box-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search roles by title, skill, or keyword (e.g., Unity, Audio, Design)..." onkeyup="filterJobs()">
+            </div>
+            <div class="tags-container" id="categoryTags">
+                <button class="tag-btn active" onclick="filterCategory('all', this)">All Careers</button>
+                <button class="tag-btn" onclick="filterCategory('audio', this)">Audio & Media</button>
+                <button class="tag-btn" onclick="filterCategory('visual', this)">Visual Arts & Design</button>
+                <button class="tag-btn" onclick="filterCategory('tech', this)">Dev & Tech</button>
+                <button class="tag-btn" onclick="filterCategory('writing', this)">Writing & Story</button>
+            </div>
+        </div>
+
+        <div class="jobs" id="jobsGrid">
+            <!-- Cards rendered dynamically by JS -->
+        </div>
+    </main>
+
+    <!-- SINGLE JOB DETAIL VIEW CONTAINER -->
+    <main id="detail-view" class="hidden">
+        <button class="back" onclick="showGridView()">
+            <i class="fa-solid fa-arrow-left"></i> Back to All Careers
+        </button>
+
+        <section id="jobDetailSection">
+            <!-- Job detail inserted dynamically -->
+        </section>
+    </main>
+
+    <footer>
+        <p>© Creative Careers UK Directory • Data compiled for illustrative UK industry averages (London & Regional variations apply).</p>
+    </footer>
+
+    <script>
+        // Full Dataset for the 8 requested Creative Careers
+        const careersData = [
+            {
+                id: "musician",
+                title: "Musician",
+                category: "audio",
+                categoryName: "Audio & Media",
+                icon: "fa-music",
+                teaser: "Compose, perform, and record original music across various media and live events.",
+                avgPayPreview: "£18k - £70k+",
+                pay: {
+                    starter: "£18,000 - £24,000",
+                    starterNote: "Orchestral trainees, session entry, local gigging",
+                    mid: "£25,000 - £40,000",
+                    midNote: "Established session musicians, music teachers, sync artists",
+                    senior: "£45,000 - £70,000+",
+                    seniorNote: "Lead touring artists, major film score composers, royalties"
+                },
+                skills: [
+                    "Instrument / Vocal Mastery", 
+                    "DAW Software (Logic Pro, Ableton, Pro Tools)", 
+                    "Sight Reading & Music Theory", 
+                    "Stage Performance", 
+                    "Mixing & Audio Engineering", 
+                    "Self-Promotion & Networking"
+                ],
+                qualifications: [
+                    "Degree or Higher National Diploma (HND) in Music Performance, Composition, or Sound Engineering is helpful but optional.",
+                    "Grade 8 examination certifications (ABRSM/Trinity) are valued for classical/session roles.",
+                    "A strong portfolio, audio showreel, and proven live performance experience are often paramount."
+                ],
+                duties: [
+                    "Composing, arranging, and rehearsing original music or established scores for recordings and live performances.",
+                    "Performing in studios for film tracks, commercials, or record label releases.",
+                    "Collaborating with sound engineers, producers, and directors to achieve specific musical tones.",
+                    "Maintaining and tuning instruments, audio gear, and studio equipment.",
+                    "Managing self-employment administration, contracts, invoicing, and copyright registration (e.g., PRS for Music)."
+                ]
+            },
+            {
+                id: "artist",
+                title: "Visual Artist",
+                category: "visual",
+                categoryName: "Visual Arts & Design",
+                icon: "fa-palette",
+                teaser: "Create original paintings, sculptures, and fine art pieces for galleries, clients, and public commissions.",
+                avgPayPreview: "£19k - £65k+",
+                pay: {
+                    starter: "£19,000 - £23,000",
+                    starterNote: "Junior gallery assistants, emerging studio artists",
+                    mid: "£26,000 - £38,000",
+                    midNote: "Represented artists, gallery sales, private commissions",
+                    senior: "£40,000 - £65,000+",
+                    seniorNote: "Established solo artists, high-profile public commissions"
+                },
+                skills: [
+                    "Traditional Media (Oil, Acrylic, Sculptures)", 
+                    "Digital Painting Tools (Procreate, Photoshop)", 
+                    "Visual Storytelling & Color Theory", 
+                    "Exhibition Curation", 
+                    "Grant Writing & Funding Applications", 
+                    "Client Relationship Management"
+                ],
+                qualifications: [
+                    "BA (Hons) or MA in Fine Art, Visual Arts, or Studio Practice.",
+                    "A curated portfolio or website demonstrating stylistic consistency and artistic vision.",
+                    "Experience with gallery residency programs and open call exhibitions."
+                ],
+                duties: [
+                    "Developing concepts and executing visual artworks using traditional or digital mediums.",
+                    "Submitting proposals for art grants, residencies, and public gallery exhibitions.",
+                    "Preparing artwork for display, including framing, lighting, and installation management.",
+                    "Promoting work through social media, studio visits, press releases, and art fairs.",
+                    "Sourcing materials, managing studio expenses, and packing art securely for shipping."
+                ]
+            },
+            {
+                id: "indie-dev",
+                title: "Indie Game Developer",
+                category: "tech",
+                categoryName: "Dev & Tech",
+                icon: "fa-gamepad",
+                teaser: "Design, code, and launch original video games for PC, console, and mobile platforms.",
+                avgPayPreview: "£24k - £80k+",
+                pay: {
+                    starter: "£24,000 - £30,000",
+                    starterNote: "Junior programmer, solo indie beginner with steam sales",
+                    mid: "£35,000 - £50,000",
+                    midNote: "Core indie dev, mid-level programmer in small studios",
+                    senior: "£55,000 - £80,000+",
+                    seniorNote: "Lead dev, successful indie studio owner, hit title royalties"
+                },
+                skills: [
+                    "Game Engines (Unity, Unreal Engine, Godot)", 
+                    "Programming (C#, C++, GDScript)", 
+                    "Game Mechanics & Level Design", 
+                    "3D/2D Asset Integration", 
+                    "Debugging & Performance Optimization", 
+                    "Steamworks & Console Publishing"
+                ],
+                qualifications: [
+                    "BSc in Computer Science, Game Development, or Interactive Media, or self-taught mastery.",
+                    "A published game portfolio (Itch.io, Steam releases, or Game Jam submissions).",
+                    "Proficiency in Git version control and project management frameworks."
+                ],
+                duties: [
+                    "Writing clean code for gameplay mechanics, artificial intelligence, UI, and physics systems.",
+                    "Designing engaging levels, puzzles, and interactive narrative flow.",
+                    "Integrating sound, music, 3D models, and animations into game engines.",
+                    "Playtesting, tracking bugs, and releasing patches or updates after release.",
+                    "Running Kickstarter campaigns, managing Steam pages, and building Discord gaming communities."
+                ]
+            },
+            {
+                id: "animator",
+                title: "Animator",
+                category: "tech",
+                categoryName: "Dev & Tech",
+                icon: "fa-film",
+                teaser: "Bring characters and graphics to life through 2D, 3D, and motion-capture techniques.",
+                avgPayPreview: "£21k - £70k+",
+                pay: {
+                    starter: "£21,000 - £26,000",
+                    starterNote: "Junior 2D/3D animator, clean-up artist",
+                    mid: "£28,000 - £42,000",
+                    midNote: "Mid-level character animator, VFX studio artist",
+                    senior: "£45,000 - £70,000+",
+                    seniorNote: "Lead animator, Animation director, Senior freelancer"
+                },
+                skills: [
+                    "3D Animation (Maya, Blender)", 
+                    "2D Animation (Toon Boom, After Effects)", 
+                    "Principles of Animation (Timing, Weight, Physics)", 
+                    "Character Rigging & Kinematics", 
+                    "Storyboarding & Animatics", 
+                    "3D Pipeline Integration"
+                ],
+                qualifications: [
+                    "BA (Hons) in Animation, Visual Effects, or Computer Graphics.",
+                    "An exceptional Showreel (30-60 seconds) showcasing movement, weight, emotion, and technical polish.",
+                    "Strong grasp of anatomical mechanics for realistic character motion."
+                ],
+                duties: [
+                    "Creating keyframes and smooth motion sequences for characters, creatures, and environmental assets.",
+                    "Studying human and animal movement to accurately reproduce realistic behaviors.",
+                    "Rigging character skeletons and setup constraints for efficient animation workflow.",
+                    "Reviewing frames with animation directors and revising work according to studio feedback.",
+                    "Ensuring rendered animations fit technical memory limits and frame rates."
+                ]
+            },
+            {
+                id: "creative-writer",
+                title: "Creative Writer",
+                category: "writing",
+                categoryName: "Writing & Story",
+                icon: "fa-pen-nib",
+                teaser: "Craft engaging narrative fiction, scripts, game copy, and published literature.",
+                avgPayPreview: "£20k - £65k+",
+                pay: {
+                    starter: "£20,000 - £25,000",
+                    starterNote: "Junior copywriter, editorial assistant, self-published author",
+                    mid: "£28,000 - £40,000",
+                    midNote: "Narrative designer, published book author, staff writer",
+                    senior: "£42,000 - £65,000+",
+                    seniorNote: "Lead narrative designer, screenwriter, best-selling author"
+                },
+                skills: [
+                    "Narrative Structuring & Pacing", 
+                    "Character & Dialogue Development", 
+                    "World-Building & Lore Creation", 
+                    "Editing & Proofreading", 
+                    "Interactive Scriptwriting (Twine, Articy)", 
+                    "Pitching & Agent Queries"
+                ],
+                qualifications: [
+                    "BA or MA in Creative Writing, English Literature, or Screenwriting.",
+                    "A portfolio of completed short stories, screenplays, or game dialogue scripts.",
+                    "Experience with literary queries or published works in journals."
+                ],
+                duties: [
+                    "Developing plotlines, character arcs, and atmospheric dialogue for novels, TV, or video games.",
+                    "Conducting thorough research to ensure historical or thematic authenticity.",
+                    "Collaborating with editors, game designers, or producers to refine narrative beats.",
+                    "Self-editing multiple draft iterations based on constructive feedback.",
+                    "Pitching completed manuscripts to literary agents, publishers, or media studios."
+                ]
+            },
+            {
+                id: "graphic-designer",
+                title: "Graphic Designer",
+                category: "visual",
+                categoryName: "Visual Arts & Design",
+                icon: "fa-vector-square",
+                teaser: "Design visually striking brand identities, typography, web graphics, and marketing materials.",
+                avgPayPreview: "£22k - £65k+",
+                pay: {
+                    starter: "£22,000 - £26,000",
+                    starterNote: "Junior graphic designer, artworker",
+                    mid: "£28,000 - £42,000",
+                    midNote: "Mid-weight designer, in-house brand specialist",
+                    senior: "£45,000 - £65,000+",
+                    seniorNote: "Design Director, Senior UX/UI designer, agency lead"
+                },
+                skills: [
+                    "Adobe Creative Cloud (Photoshop, Illustrator, InDesign)", 
+                    "UI/UX Tools (Figma)", 
+                    "Typography & Grid Layouts", 
+                    "Branding & Style Guides", 
+                    "Print Prep & Pre-Press Setup", 
+                    "Client Communication"
+                ],
+                qualifications: [
+                    "BA (Hons) in Graphic Design, Communication Design, or Visual Arts.",
+                    "An online portfolio displaying brand identity systems, digital ads, and layout designs.",
+                    "Understanding of design accessibility standards and responsive visual layout."
+                ],
+                duties: [
+                    "Creating vector logos, brand guidelines, brochure designs, and social media assets.",
+                    "Selecting fonts, color schemes, and imagery that align with client marketing goals.",
+                    "Preparing press-ready PDFs with bleed, trim lines, and CMYK color profiles.",
+                    "Liaising with marketing teams, printers, and front-end developers.",
+                    "Iterating design drafts based on client requirements and design reviews."
+                ]
+            },
+            {
+                id: "illustrator",
+                title: "Illustrator",
+                category: "visual",
+                categoryName: "Visual Arts & Design",
+                icon: "fa-paintbrush",
+                teaser: "Draw custom artwork for children’s books, magazines, editorial media, and product packaging.",
+                avgPayPreview: "£20k - £60k+",
+                pay: {
+                    starter: "£20,000 - £25,000",
+                    starterNote: "Junior illustrator, editorial contributor",
+                    mid: "£27,000 - £38,000",
+                    midNote: "Mid-level publishing illustrator, concept artist",
+                    senior: "£40,000 - £60,000+",
+                    seniorNote: "Senior freelance illustrator, lead concept artist"
+                },
+                skills: [
+                    "Digital Painting (Procreate, Clip Studio, Photoshop)", 
+                    "Vector Illustration (Adobe Illustrator)", 
+                    "Character & Environment Design", 
+                    "Visual Composition", 
+                    "Client Brief Interpretation", 
+                    "Contract Negotiation & Rights Rights Management"
+                ],
+                qualifications: [
+                    "BA (Hons) in Illustration, Graphic Communication, or Fine Art.",
+                    "An online portfolio exhibiting a recognizable personal artistic style.",
+                    "Representation by an Illustration agency is common for commercial work."
+                ],
+                duties: [
+                    "Interpreting creative briefs to sketch draft concepts and color roughs for client approval.",
+                    "Producing final high-resolution digital or physical illustrations.",
+                    "Designing book covers, editorial magazine spreads, board game assets, and packaging.",
+                    "Licensing illustration rights for commercial products and merchandise.",
+                    "Managing project deadlines, contracts, and royalty agreements."
+                ]
+            },
+            {
+                id: "content-creator",
+                title: "Content Creator",
+                category: "audio",
+                categoryName: "Audio & Media",
+                icon: "fa-video",
+                teaser: "Produce engageable video, podcast, and social content for audiences and brand sponsors.",
+                avgPayPreview: "£21k - £75k+",
+                pay: {
+                    starter: "£21,000 - £26,000",
+                    starterNote: "Junior video editor, social media assistant",
+                    mid: "£28,000 - £42,000",
+                    midNote: "Established YouTuber, channel manager, content strategist",
+                    senior: "£45,000 - £75,000+",
+                    seniorNote: "Lead content director, top influencer with brand deals"
+                },
+                skills: [
+                    "Video Editing (Premiere Pro, DaVinci Resolve, CapCut)", 
+                    "Camera & Lighting Operation", 
+                    "Thumbnail & Graphic Design", 
+                    "Analytics & Audience Retention Strategy", 
+                    "On-Camera Presentation", 
+                    "Sponsorship Deal Negotiation"
+                ],
+                qualifications: [
+                    "Degree in Media Production, Film, Marketing, or self-taught channel growth track record.",
+                    "Demonstrated portfolio of published videos, social channels, or client analytics.",
+                    "Expertise in platform algorithms (YouTube, TikTok, Instagram, Twitch)."
+                ],
+                duties: [
+                    "Scripting, storyboarding, filming, and editing short-form and long-form video content.",
+                    "Designing high-click-through thumbnails and optimizing video SEO metadata.",
+                    "Analyzing viewer engagement retention graphs to refine content strategy.",
+                    "Collaborating with brands for sponsored integration segments.",
+                    "Engaging with audience comments and building a loyal community online."
+                ]
+            }
+        ];
+
+        let currentCategory = 'all';
+
+        function renderGrid(data) {
+            const grid = document.getElementById('jobsGrid');
+            if (data.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fa-solid fa-face-frown"></i>
+                        <h3>No matching creative roles found</h3>
+                        <p>Try searching for a different keyword or resetting filters.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = data.map(job => `
+                <div class="job-card" onclick="openJobDetail('${job.id}')">
+                    <div>
+                        <div class="icon-wrapper">
+                            <i class="fa-solid ${job.icon}"></i>
+                        </div>
+                        <h3>${job.title}</h3>
+                        <div class="pay-badge"><i class="fa-solid fa-sterling-sign"></i> UK Pay: ${job.avgPayPreview}</div>
+                        <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 18px;">${job.teaser}</p>
+                    </div>
+                    <a href="#${job.id}" class="btn-details" onclick="event.preventDefault(); openJobDetail('${job.id}');">
+                        View Role Details →
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        function filterJobs() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            const filtered = careersData.filter(job => {
+                const matchesCategory = (currentCategory === 'all' || job.category === currentCategory);
+                const matchesSearch = 
+                    job.title.toLowerCase().includes(query) ||
+                    job.teaser.toLowerCase().includes(query) ||
+                    job.skills.some(skill => skill.toLowerCase().includes(query)) ||
+                    job.categoryName.toLowerCase().includes(query);
+
+                return matchesCategory && matchesSearch;
+            });
+
+            renderGrid(filtered);
+        }
+
+        function filterCategory(category, element) {
+            currentCategory = category;
+            
+            // Update active state on tag buttons
+            const buttons = document.querySelectorAll('.tag-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+
+            filterJobs();
+        }
+
+        function openJobDetail(jobId) {
+            const job = careersData.find(j => j.id === jobId);
+            if (!job) return;
+
+            // Set hash in URL without re-triggering full page reload
+            window.location.hash = job.id;
+
+            const section = document.getElementById('jobDetailSection');
+            section.innerHTML = `
+                <div class="detail-header">
+                    <div class="detail-header-icon">
+                        <i class="fa-solid ${job.icon}"></i>
+                    </div>
+                    <div class="detail-header-text">
+                        <h2>${job.title}</h2>
+                        <span class="category-tag">${job.categoryName}</span>
+                    </div>
+                </div>
+
+                <div class="salary-section-title">
+                    <i class="fa-solid fa-chart-line" style="color: #0066cc;"></i> Average UK Pay Breakdown
+                </div>
+                <div class="salary-grid">
+                    <div class="salary-card">
+                        <div class="level">Starter / Junior</div>
+                        <div class="amount">${job.pay.starter}</div>
+                        <div class="note">${job.pay.starterNote}</div>
+                    </div>
+                    <div class="salary-card">
+                        <div class="level">Mid-Level</div>
+                        <div class="amount">${job.pay.mid}</div>
+                        <div class="note">${job.pay.midNote}</div>
+                    </div>
+                    <div class="salary-card">
+                        <div class="level">Senior / Freelance</div>
+                        <div class="amount">${job.pay.senior}</div>
+                        <div class="note">${job.pay.seniorNote}</div>
+                    </div>
+                </div>
+
+                <div class="salary-section-title">
+                    <i class="fa-solid fa-screwdriver-wrench" style="color: #0066cc;"></i> Core Skills & Tools
+                </div>
+                <div class="skills-list">
+                    ${job.skills.map(skill => `<span class="skill-pill"><i class="fa-solid fa-check" style="font-size:0.75rem;"></i> ${skill}</span>`).join('')}
+                </div>
+
+                <div class="content-grid">
+                    <div class="info-box">
+                        <h3><i class="fa-solid fa-list-check" style="color:#0066cc;"></i> Key Duties & Responsibilities</h3>
+                        <ul>
+                            ${job.duties.map(d => `<li>${d}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h3><i class="fa-solid fa-graduation-cap" style="color:#0066cc;"></i> Qualifications & Entry Routes</h3>
+                        <ul>
+                            ${job.qualifications.map(q => `<li>${q}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            // Toggle views
+            document.getElementById('grid-view').classList.add('hidden');
+            document.getElementById('detail-view').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showGridView() {
+            window.location.hash = '';
+            document.getElementById('detail-view').classList.add('hidden');
+            document.getElementById('grid-view').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Handle URL Hash navigation on page load or browser back/forward
+        function handleHashRouting() {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                const matched = careersData.find(j => j.id === hash);
+                if (matched) {
+                    openJobDetail(hash);
+                    return;
+                }
+            }
+            showGridView();
+        }
+
+        // Initial setup
+        window.addEventListener('DOMContentLoaded', () => {
+            renderGrid(careersData);
+            handleHashRouting();
+        });
+
+        window.addEventListener('hashchange', handleHashRouting);
+    </script>
+</body>
+</html>
